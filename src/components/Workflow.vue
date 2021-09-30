@@ -1,5 +1,6 @@
 <template>
   <div class="flow-layout">
+  <!-- flow-editor的组件是由flow-tools, flow-zoom, canvas-container绘图容器, flow-editor-sidebar 用于节点属性编辑的侧边栏。 -->
     <div class="flow-editor">
       <div class="flow-tools">
         <el-tooltip class="item" effect="dark" content="手动排列" placement="top-start">
@@ -209,6 +210,7 @@
 </template>
 
 <script>
+// 使用了
 import JSONFormatter from 'json-formatter-js';
 import Draggable from './Draggable';
 import {FLOW_ITEM_TYPE, FLOW_ALL_LIST, FLOW_LIST, FLOW_TYPE} from "../constant";
