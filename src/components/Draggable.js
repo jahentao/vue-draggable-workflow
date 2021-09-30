@@ -1,3 +1,4 @@
+// sortablejs 是Ts的一些库，这里通过require直接使用到该库，需要定义在package.json的dependencies中
 const Sortable = require("sortablejs");
 
 function getConsole() {
@@ -49,6 +50,8 @@ function computeIndexes(slots, children, isTransition) {
     return isTransition ? rawIndexes.filter(ind => ind !== -1) : rawIndexes;
 }
 
+// emit 封装了 Vue 框架的$emit事件
+// $nextTick查资料是Node.js v10的语法，它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
 function emit(evtName, evtData) {
     this.$nextTick(() => this.$emit(evtName.toLowerCase(), evtData));
 }
@@ -73,6 +76,7 @@ function groupIsClone(group) {
     return pull === "clone";
 }
 
+// 定义一些事件
 const eventsListened = ["Start", "Add", "Remove", "Update", "End"];
 const eventsToEmit = ["Choose", "Sort", "Filter", "Clone"];
 const readonlyProperties = ["Move", ...eventsListened, ...eventsToEmit].map(
@@ -80,6 +84,7 @@ const readonlyProperties = ["Move", ...eventsListened, ...eventsToEmit].map(
 );
 var draggingElement = null;
 
+// 定义可拖拽组件的属性，从类的角度看，就是从外界接收的，用于初始化组件的构造函数的参数
 const props = {
     options: Object,
     list: {
@@ -121,6 +126,7 @@ const props = {
     }
 };
 
+// Vue.js 中对组件类的抽象
 const draggableComponent = {
     name: "draggable",
 
@@ -476,5 +482,5 @@ const draggableComponent = {
     }
 };
 
-
+// 通过export，在其他组件中通过import导入使用
 export default draggableComponent;
